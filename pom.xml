@@ -1,0 +1,139 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.example</groupId>
+    <artifactId>struts-example</artifactId>
+    <packaging>war</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>struts-example Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <struts2.version>2.5.33</struts2.version>
+        <log4j2.version>2.24.3</log4j2.version>
+        <hibernate-validator.version>8.0.1.Final</hibernate-validator.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <!--Add Struts 2 Jar Files To Class Path-->
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-core</artifactId>
+            <version>${struts2.version}</version>
+        </dependency>
+        <!--Add Logging-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+
+        <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-api</artifactId>
+        <version>${log4j2.version}</version>
+        </dependency>
+        <!--🔹 Purpose: Provides the Jakarta Servlet API (jakarta.servlet.*) — this includes HttpServlet, Filter, ServletContext, etc.
+
+        🔹 Why it's needed: Core for any web app using Servlets, Filters, etc.
+
+        🔹 Scope = provided: Because your application server (like Tomcat 10+) already provides this at runtime — you just need it at compile time.-->
+<!--        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.1.0</version>
+            &lt;!&ndash;<scope>provided</scope>&ndash;&gt;
+        </dependency>-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <!--<scope>provided</scope>-->
+        </dependency>
+        <!--🔹 Purpose: Provides JSP support, including things like jakarta.servlet.jsp.JspPage, taglibs, etc.
+
+        🔹 Why it's needed: Required if your web app uses JSP files (.jsp) as part of the UI layer.
+
+        🔹 Scope = provided: Again, this is provided by the server like Tomcat or Jetty.-->
+<!--        <dependency>
+            <groupId>jakarta.servlet.jsp</groupId>
+            <artifactId>jakarta.servlet.jsp-api</artifactId>
+            <version>4.0.0</version>
+            &lt;!&ndash;<scope>provided</scope>&ndash;&gt;
+        </dependency>-->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.3.3</version>
+            <!--<scope>provided</scope>-->
+        </dependency>
+        <!--🔹 Purpose: The Bean Validation API (jakarta.validation.constraints.*)
+        E.g., annotations like:
+
+        java
+        Copy
+        Edit
+        @NotNull
+        @Size(min = 5, max = 50)
+        🔹 Why it's needed: To perform input validation on Java Beans (like validating form data in Struts, Spring, JSF, etc.)-->
+<!--        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>3.0.2</version>
+        </dependency>-->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
+        </dependency>
+        <!--🔹 Purpose: This is the implementation of the Bean Validation API
+
+        🔹 Why it's needed: The jakarta.validation-api provides interfaces and annotations, but this is the actual logic that performs validation at runtime
+
+        🔹 ✅ Works with Struts 2, Spring MVC, etc.-->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator.version}</version>
+        </dependency>
+        <!--🔹 Purpose: Provides Jakarta EL (Expression Language) support. Used for things like:
+
+        jsp
+        Copy
+        Edit
+        ${user.name}
+        🔹 Why it's needed:
+
+        EL is used heavily in JSP, JSF, and Struts 2 OGNL expressions
+
+        Required for JSP evaluation, JSTL tags, and expression-based validation rules-->
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.el</artifactId>
+            <version>5.0.0-M1</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>struts-example</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.11.2</version>
+                <configuration>
+                    <doclint>none</doclint>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
